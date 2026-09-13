@@ -1,0 +1,1681 @@
+{
+    "categories": [
+        {
+            "title": "Basic Words",
+            "status": "active",
+            "levels": [
+                {
+                    "title": "Level 1: Starter",
+                    "status": "active",
+                    "sets": [
+                        {
+                            "id": "set_10101",
+                            "title": "Set 1. My Room & Classroom",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "책상",
+                                    "roman": "chaeksang",
+                                    "meaning": "Desk",
+                                    "emoji": "",
+                                    "image": "image/set_10101_desk.png",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Chair",
+                                        "Book",
+                                        "Pencil"
+                                    ]
+                                },
+                                {
+                                    "target": "의자",
+                                    "roman": "uija",
+                                    "meaning": "Chair",
+                                    "emoji": "🪑",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Desk",
+                                        "Eraser",
+                                        "Bag"
+                                    ]
+                                },
+                                {
+                                    "target": "책",
+                                    "roman": "chaek",
+                                    "meaning": "Book",
+                                    "emoji": "📖",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Notebook",
+                                        "Clock",
+                                        "Door"
+                                    ]
+                                },
+                                {
+                                    "target": "연필",
+                                    "roman": "yeonpil",
+                                    "meaning": "Pencil",
+                                    "emoji": "✏️",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Eraser",
+                                        "Book",
+                                        "Desk"
+                                    ]
+                                },
+                                {
+                                    "target": "지우개",
+                                    "roman": "jiugae",
+                                    "meaning": "Eraser",
+                                    "emoji": "",
+                                    "image": "image/set_10105_eraser.png",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Pencil",
+                                        "Notebook",
+                                        "Window"
+                                    ]
+                                },
+                                {
+                                    "target": "공책",
+                                    "roman": "gongchaek",
+                                    "meaning": "Notebook",
+                                    "emoji": "📓",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Book",
+                                        "Pencil",
+                                        "Clock"
+                                    ]
+                                },
+                                {
+                                    "target": "가방",
+                                    "roman": "gabang",
+                                    "meaning": "Bag",
+                                    "emoji": "🎒",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Chair",
+                                        "Desk",
+                                        "Door"
+                                    ]
+                                },
+                                {
+                                    "target": "시계",
+                                    "roman": "sigye",
+                                    "meaning": "Clock / Watch",
+                                    "emoji": "⏰",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Notebook",
+                                        "Window",
+                                        "Bag"
+                                    ]
+                                },
+                                {
+                                    "target": "문",
+                                    "roman": "mun",
+                                    "meaning": "Door",
+                                    "emoji": "🚪",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Window",
+                                        "Desk",
+                                        "Chair"
+                                    ]
+                                },
+                                {
+                                    "target": "창문",
+                                    "roman": "changmun",
+                                    "meaning": "Window",
+                                    "emoji": "🪟",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Door",
+                                        "Clock",
+                                        "Book"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "set_10201",
+                            "title": "Set 2. Basic Food & Drink",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "물",
+                                    "roman": "mul",
+                                    "meaning": "Water",
+                                    "emoji": "💧",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Milk",
+                                        "Tea",
+                                        "Juice"
+                                    ]
+                                },
+                                {
+                                    "target": "밥",
+                                    "roman": "bap",
+                                    "meaning": "Rice / Meal",
+                                    "emoji": "🍚",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Bread",
+                                        "Meat",
+                                        "Fish"
+                                    ]
+                                },
+                                {
+                                    "target": "빵",
+                                    "roman": "ppang",
+                                    "meaning": "Bread",
+                                    "emoji": "🍞",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Rice",
+                                        "Apple",
+                                        "Egg"
+                                    ]
+                                },
+                                {
+                                    "target": "사과",
+                                    "roman": "sagwa",
+                                    "meaning": "Apple",
+                                    "emoji": "🍎",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Banana",
+                                        "Milk",
+                                        "Bread"
+                                    ]
+                                },
+                                {
+                                    "target": "우유",
+                                    "roman": "uyu",
+                                    "meaning": "Milk",
+                                    "emoji": "🥛",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Water",
+                                        "Tea",
+                                        "Juice"
+                                    ]
+                                },
+                                {
+                                    "target": "고기",
+                                    "roman": "gogi",
+                                    "meaning": "Meat",
+                                    "emoji": "🥩",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Fish",
+                                        "Egg",
+                                        "Rice"
+                                    ]
+                                },
+                                {
+                                    "target": "생선",
+                                    "roman": "saengseon",
+                                    "meaning": "Fish",
+                                    "emoji": "🐟",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Meat",
+                                        "Egg",
+                                        "Water"
+                                    ]
+                                },
+                                {
+                                    "target": "계란",
+                                    "roman": "gyeran",
+                                    "meaning": "Egg",
+                                    "emoji": "🥚",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Apple",
+                                        "Bread",
+                                        "Fish"
+                                    ]
+                                },
+                                {
+                                    "target": "차",
+                                    "roman": "cha",
+                                    "meaning": "Tea",
+                                    "emoji": "🍵",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Water",
+                                        "Milk",
+                                        "Juice"
+                                    ]
+                                },
+                                {
+                                    "target": "주스",
+                                    "roman": "juseu",
+                                    "meaning": "Juice",
+                                    "emoji": "🧃",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Tea",
+                                        "Water",
+                                        "Apple"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "set_10301",
+                            "title": "Set 3. Human Body Parts",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "눈",
+                                    "roman": "nun",
+                                    "meaning": "Eye",
+                                    "emoji": "👀",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Nose",
+                                        "Mouth",
+                                        "Ear"
+                                    ]
+                                },
+                                {
+                                    "target": "코",
+                                    "roman": "ko",
+                                    "meaning": "Nose",
+                                    "emoji": "👃",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Eye",
+                                        "Ear",
+                                        "Head"
+                                    ]
+                                },
+                                {
+                                    "target": "입",
+                                    "roman": "ip",
+                                    "meaning": "Mouth",
+                                    "emoji": "👄",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Nose",
+                                        "Hand",
+                                        "Foot"
+                                    ]
+                                },
+                                {
+                                    "target": "귀",
+                                    "roman": "gwi",
+                                    "meaning": "Ear",
+                                    "emoji": "👂",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Eye",
+                                        "Nose",
+                                        "Arm"
+                                    ]
+                                },
+                                {
+                                    "target": "머리",
+                                    "roman": "meori",
+                                    "meaning": "Head / Hair",
+                                    "emoji": "🗣️",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Leg",
+                                        "Stomach",
+                                        "Face"
+                                    ]
+                                },
+                                {
+                                    "target": "손",
+                                    "roman": "son",
+                                    "meaning": "Hand",
+                                    "emoji": "✋",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Foot",
+                                        "Arm",
+                                        "Leg"
+                                    ]
+                                },
+                                {
+                                    "target": "발",
+                                    "roman": "bal",
+                                    "meaning": "Foot",
+                                    "emoji": "🦶",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Hand",
+                                        "Leg",
+                                        "Stomach"
+                                    ]
+                                },
+                                {
+                                    "target": "다리",
+                                    "roman": "dari",
+                                    "meaning": "Leg",
+                                    "emoji": "🦵",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Arm",
+                                        "Foot",
+                                        "Hand"
+                                    ]
+                                },
+                                {
+                                    "target": "팔",
+                                    "roman": "pal",
+                                    "meaning": "Arm",
+                                    "emoji": "💪",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Leg",
+                                        "Hand",
+                                        "Head"
+                                    ]
+                                },
+                                {
+                                    "target": "배",
+                                    "roman": "bae",
+                                    "meaning": "Stomach",
+                                    "emoji": "",
+                                    "image": "image/set_10310_stomach.png",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Leg",
+                                        "Arm",
+                                        "Back"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "set_10401",
+                            "title": "Set 4. Basic People & Pronouns",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "나",
+                                    "roman": "na",
+                                    "meaning": "I / Me",
+                                    "emoji": "🙋",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "You",
+                                        "We",
+                                        "Person"
+                                    ]
+                                },
+                                {
+                                    "target": "너",
+                                    "roman": "neo",
+                                    "meaning": "You",
+                                    "emoji": "👉",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "I",
+                                        "Friend",
+                                        "Teacher"
+                                    ]
+                                },
+                                {
+                                    "target": "우리",
+                                    "roman": "uri",
+                                    "meaning": "We / Us",
+                                    "emoji": "👥",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "You",
+                                        "Person",
+                                        "Student"
+                                    ]
+                                },
+                                {
+                                    "target": "사람",
+                                    "roman": "saram",
+                                    "meaning": "Person",
+                                    "emoji": "🧑",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Friend",
+                                        "Teacher",
+                                        "Foreigner"
+                                    ]
+                                },
+                                {
+                                    "target": "친구",
+                                    "roman": "chingu",
+                                    "meaning": "Friend",
+                                    "emoji": "🧑‍🤝‍🧑",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Teacher",
+                                        "Student",
+                                        "Person"
+                                    ]
+                                },
+                                {
+                                    "target": "선생님",
+                                    "roman": "seonsaengnim",
+                                    "meaning": "Teacher",
+                                    "emoji": "👩‍🏫",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Student",
+                                        "Person",
+                                        "Friend"
+                                    ]
+                                },
+                                {
+                                    "target": "학생",
+                                    "roman": "haksaeng",
+                                    "meaning": "Student",
+                                    "emoji": "🧑‍🎓",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Teacher",
+                                        "Friend",
+                                        "Man"
+                                    ]
+                                },
+                                {
+                                    "target": "남자",
+                                    "roman": "namja",
+                                    "meaning": "Man / Male",
+                                    "emoji": "👨",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Woman",
+                                        "Person",
+                                        "Friend"
+                                    ]
+                                },
+                                {
+                                    "target": "여자",
+                                    "roman": "yeoja",
+                                    "meaning": "Woman / Female",
+                                    "emoji": "👩",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Man",
+                                        "Person",
+                                        "Student"
+                                    ]
+                                },
+                                {
+                                    "target": "외국인",
+                                    "roman": "oegugin",
+                                    "meaning": "Foreigner",
+                                    "emoji": "🌐",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Person",
+                                        "Friend",
+                                        "Teacher"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "set_10501",
+                            "title": "Set 5. Essential Numbers & Basics",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "하나",
+                                    "roman": "hana",
+                                    "meaning": "One (1)",
+                                    "emoji": "1️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Two (2)",
+                                        "Three (3)",
+                                        "Five (5)"
+                                    ]
+                                },
+                                {
+                                    "target": "둘",
+                                    "roman": "dul",
+                                    "meaning": "Two (2)",
+                                    "emoji": "2️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "One (1)",
+                                        "Three (3)",
+                                        "Four (4)"
+                                    ]
+                                },
+                                {
+                                    "target": "셋",
+                                    "roman": "set",
+                                    "meaning": "Three (3)",
+                                    "emoji": "3️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Two (2)",
+                                        "Four (4)",
+                                        "Five (5)"
+                                    ]
+                                },
+                                {
+                                    "target": "넷",
+                                    "roman": "net",
+                                    "meaning": "Four (4)",
+                                    "emoji": "4️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Three (3)",
+                                        "Five (5)",
+                                        "Six (6)"
+                                    ]
+                                },
+                                {
+                                    "target": "다섯",
+                                    "roman": "daseot",
+                                    "meaning": "Five (5)",
+                                    "emoji": "5️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Four (4)",
+                                        "Six (6)",
+                                        "Seven (7)"
+                                    ]
+                                },
+                                {
+                                    "target": "여섯",
+                                    "roman": "yeoseot",
+                                    "meaning": "Six (6)",
+                                    "emoji": "6️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Five (5)",
+                                        "Seven (7)",
+                                        "Eight (8)"
+                                    ]
+                                },
+                                {
+                                    "target": "일곱",
+                                    "roman": "ilgop",
+                                    "meaning": "Seven (7)",
+                                    "emoji": "7️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Six (6)",
+                                        "Eight (8)",
+                                        "Nine (9)"
+                                    ]
+                                },
+                                {
+                                    "target": "여덟",
+                                    "roman": "yeodeol",
+                                    "meaning": "Eight (8)",
+                                    "emoji": "8️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Seven (7)",
+                                        "Nine (9)",
+                                        "Ten (10)"
+                                    ]
+                                },
+                                {
+                                    "target": "아홉",
+                                    "roman": "ahop",
+                                    "meaning": "Nine (9)",
+                                    "emoji": "9️⃣",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Eight (8)",
+                                        "Ten (10)",
+                                        "One (1)"
+                                    ]
+                                },
+                                {
+                                    "target": "열",
+                                    "roman": "yeol",
+                                    "meaning": "Ten (10)",
+                                    "emoji": "🔟",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Nine (9)",
+                                        "One (1)",
+                                        "Five (5)"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Core Verbs & Adjectives",
+            "status": "active",
+            "levels": [
+                {
+                    "title": "Level 1: Starter",
+                    "status": "active",
+                    "sets": [
+                        {
+                            "id": "set_20101",
+                            "title": "Set 1. Daily Action Verbs",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "가다",
+                                    "roman": "gada",
+                                    "meaning": "go",
+                                    "emoji": "🚪🚶‍♀️→",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "come",
+                                        "eat",
+                                        "sleep"
+                                    ]
+                                },
+                                {
+                                    "target": "오다",
+                                    "roman": "oda",
+                                    "meaning": "come",
+                                    "emoji": "←🏃‍♀️🚪",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "go",
+                                        "drink",
+                                        "see (watch)"
+                                    ]
+                                },
+                                {
+                                    "target": "먹다",
+                                    "roman": "meokda",
+                                    "meaning": "eat",
+                                    "emoji": "🍚",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "drink",
+                                        "buy",
+                                        "listen"
+                                    ]
+                                },
+                                {
+                                    "target": "마시다",
+                                    "roman": "masida",
+                                    "meaning": "drink",
+                                    "emoji": "☕",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "eat",
+                                        "speak",
+                                        "do"
+                                    ]
+                                },
+                                {
+                                    "target": "자다",
+                                    "roman": "jada",
+                                    "meaning": "sleep",
+                                    "emoji": "😴",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "wake up",
+                                        "see",
+                                        "go"
+                                    ]
+                                },
+                                {
+                                    "target": "보다",
+                                    "roman": "boda",
+                                    "meaning": "see / watch",
+                                    "emoji": "👀",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "listen",
+                                        "sleep",
+                                        "come"
+                                    ]
+                                },
+                                {
+                                    "target": "듣다",
+                                    "roman": "deutda",
+                                    "meaning": "listen",
+                                    "emoji": "👂",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "see",
+                                        "speak",
+                                        "eat"
+                                    ]
+                                },
+                                {
+                                    "target": "말하다",
+                                    "roman": "malhada",
+                                    "meaning": "speak",
+                                    "emoji": "👄",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "listen",
+                                        "do",
+                                        "buy"
+                                    ]
+                                },
+                                {
+                                    "target": "사다",
+                                    "roman": "sada",
+                                    "meaning": "buy",
+                                    "emoji": "🛒",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "sell",
+                                        "eat",
+                                        "go"
+                                    ]
+                                },
+                                {
+                                    "target": "하다",
+                                    "roman": "hada",
+                                    "meaning": "do",
+                                    "emoji": "👆",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "become",
+                                        "be",
+                                        "not be"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "set_20201",
+                            "title": "Set 2. States & Sensory Expressions",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "크다",
+                                    "roman": "keuda",
+                                    "meaning": "be big",
+                                    "emoji": "🐘",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "small",
+                                        "many",
+                                        "good"
+                                    ]
+                                },
+                                {
+                                    "target": "작다",
+                                    "roman": "jakda",
+                                    "meaning": "be small",
+                                    "emoji": "🐁",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "big",
+                                        "few",
+                                        "bad"
+                                    ]
+                                },
+                                {
+                                    "target": "많다",
+                                    "roman": "manta",
+                                    "meaning": "be many",
+                                    "emoji": "🔢",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "few",
+                                        "big",
+                                        "delicious"
+                                    ]
+                                },
+                                {
+                                    "target": "적다",
+                                    "roman": "jeokda",
+                                    "meaning": "be few",
+                                    "emoji": "📉",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "many",
+                                        "small",
+                                        "cold"
+                                    ]
+                                },
+                                {
+                                    "target": "좋다",
+                                    "roman": "jota",
+                                    "meaning": "be good",
+                                    "emoji": "👍",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "dislike",
+                                        "bad",
+                                        "big"
+                                    ]
+                                },
+                                {
+                                    "target": "맛있다",
+                                    "roman": "masitda",
+                                    "meaning": "be delicious",
+                                    "emoji": "😋",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "tasteless",
+                                        "good",
+                                        "hot"
+                                    ]
+                                },
+                                {
+                                    "target": "덥다",
+                                    "roman": "deopda",
+                                    "meaning": "be hot",
+                                    "emoji": "☀️",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "cold",
+                                        "sick",
+                                        "delicious"
+                                    ]
+                                },
+                                {
+                                    "target": "춥다",
+                                    "roman": "chupda",
+                                    "meaning": "be cold",
+                                    "emoji": "❄️",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "hot",
+                                        "good",
+                                        "small"
+                                    ]
+                                },
+                                {
+                                    "target": "재미있다",
+                                    "roman": "jaemiitda",
+                                    "meaning": "be fun",
+                                    "emoji": "🎉",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "boring",
+                                        "tedious",
+                                        "good"
+                                    ]
+                                },
+                                {
+                                    "target": "아프다",
+                                    "roman": "apeuda",
+                                    "meaning": "be sick",
+                                    "emoji": "🩹",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "fine",
+                                        "healthy",
+                                        "big"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Everyday Expressions",
+            "status": "active",
+            "levels": [
+                {
+                    "title": "Level 1: Starter",
+                    "status": "active",
+                    "sets": [
+                        {
+                            "id": "set_30101",
+                            "title": "Set 1. Positive Reactions",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "진짜?",
+                                    "roman": "jinjja?",
+                                    "meaning": "Really? / Seriously?",
+                                    "emoji": "😲",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "No",
+                                        "No way",
+                                        "Daebak (Awesome)"
+                                    ]
+                                },
+                                {
+                                    "target": "대박",
+                                    "roman": "daebak",
+                                    "meaning": "Awesome! / Jackpot!",
+                                    "emoji": "🤩",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Really",
+                                        "Aigo",
+                                        "Nah / Oh well"
+                                    ]
+                                },
+                                {
+                                    "target": "응",
+                                    "roman": "eung",
+                                    "meaning": "Yes (Casual)",
+                                    "emoji": "👍",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "No",
+                                        "I don't know",
+                                        "Yeah"
+                                    ]
+                                },
+                                {
+                                    "target": "알았어",
+                                    "roman": "arasseo",
+                                    "meaning": "Got it / Okay",
+                                    "emoji": "🆗",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "I don't know",
+                                        "No",
+                                        "Wait a moment"
+                                    ]
+                                },
+                                {
+                                    "target": "그래",
+                                    "roman": "geurae",
+                                    "meaning": "Sounds good / Okay",
+                                    "emoji": "🤝",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "No",
+                                        "I don't know",
+                                        "Wait a moment"
+                                    ]
+                                },
+                                {
+                                    "target": "와우",
+                                    "roman": "wau",
+                                    "meaning": "Wow",
+                                    "emoji": "😮",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Aigo",
+                                        "Daebak",
+                                        "Oh well"
+                                    ]
+                                },
+                                {
+                                    "target": "좋아",
+                                    "roman": "joa",
+                                    "meaning": "Good / Sounds good",
+                                    "emoji": "✨",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "I don't want to",
+                                        "I don't know",
+                                        "No"
+                                    ]
+                                },
+                                {
+                                    "target": "맞아",
+                                    "roman": "maja",
+                                    "meaning": "That's right",
+                                    "emoji": "🎯",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Incorrect",
+                                        "No",
+                                        "Really"
+                                    ]
+                                },
+                                {
+                                    "target": "최고",
+                                    "roman": "choego",
+                                    "meaning": "The best / Awesome",
+                                    "emoji": "🏆",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Not really",
+                                        "No",
+                                        "Worst"
+                                    ]
+                                },
+                                {
+                                    "target": "고마워",
+                                    "roman": "gomawo",
+                                    "meaning": "Thanks",
+                                    "emoji": "🥰",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Sorry",
+                                        "No",
+                                        "I don't know"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "set_30201",
+                            "title": "Set 2. Negative Reactions",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "아니",
+                                    "roman": "ani",
+                                    "meaning": "No (Casual)",
+                                    "emoji": "🙅‍♂️",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Yes",
+                                        "Really",
+                                        "Well"
+                                    ]
+                                },
+                                {
+                                    "target": "아이구",
+                                    "roman": "aigu",
+                                    "meaning": "Oh dear / Gosh",
+                                    "emoji": "🤦",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Daebak",
+                                        "Really",
+                                        "Wow"
+                                    ]
+                                },
+                                {
+                                    "target": "몰라",
+                                    "roman": "molla",
+                                    "meaning": "I don't know",
+                                    "emoji": "🤷",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "I know",
+                                        "Got it",
+                                        "Really"
+                                    ]
+                                },
+                                {
+                                    "target": "에이",
+                                    "roman": "ei",
+                                    "meaning": "Oh well / Nah",
+                                    "emoji": "🙄",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Daebak",
+                                        "Yes",
+                                        "Really"
+                                    ]
+                                },
+                                {
+                                    "target": "싫어",
+                                    "roman": "sireo",
+                                    "meaning": "I don't want to / No thanks",
+                                    "emoji": "❌",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Sounds good",
+                                        "Yes",
+                                        "Got it"
+                                    ]
+                                },
+                                {
+                                    "target": "글쎄",
+                                    "roman": "geulsse",
+                                    "meaning": "Well... / It's hard to say",
+                                    "emoji": "🤔",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "That's right",
+                                        "Really",
+                                        "Got it"
+                                    ]
+                                },
+                                {
+                                    "target": "설마",
+                                    "roman": "seolma",
+                                    "meaning": "No way / You've got to be kidding",
+                                    "emoji": "😱",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Really",
+                                        "That's right",
+                                        "Daebak"
+                                    ]
+                                },
+                                {
+                                    "target": "아냐",
+                                    "roman": "anya",
+                                    "meaning": "It's not / No",
+                                    "emoji": "🙅‍♀️",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "That's right",
+                                        "Yes",
+                                        "Yeah"
+                                    ]
+                                },
+                                {
+                                    "target": "어이없어",
+                                    "roman": "eoieopseo",
+                                    "meaning": "That's absurd / Unbelievable",
+                                    "emoji": "🤦‍♀️",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Daebak",
+                                        "Sounds good",
+                                        "That's right"
+                                    ]
+                                },
+                                {
+                                    "target": "미안해",
+                                    "roman": "mianhae",
+                                    "meaning": "Sorry",
+                                    "emoji": "🙇",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Thank you",
+                                        "Sounds good",
+                                        "Yes"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Loanwords",
+            "status": "active",
+            "levels": [
+                {
+                    "title": "Level 1: Starter",
+                    "status": "active",
+                    "sets": [
+                        {
+                            "id": "set_40101",
+                            "title": "Set 1. Basic Food & Drink Loanwords",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "커피",
+                                    "roman": "keopi",
+                                    "meaning": "Coffee",
+                                    "emoji": "☕",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Juice",
+                                        "Milk",
+                                        "Water"
+                                    ]
+                                },
+                                {
+                                    "target": "주스",
+                                    "roman": "juseu",
+                                    "meaning": "Juice",
+                                    "emoji": "🧃",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Coffee",
+                                        "Tea",
+                                        "Cola"
+                                    ]
+                                },
+                                {
+                                    "target": "빵",
+                                    "roman": "ppang",
+                                    "meaning": "Bread",
+                                    "emoji": "🍞",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Rice",
+                                        "Meat",
+                                        "Tteok"
+                                    ]
+                                },
+                                {
+                                    "target": "케이크",
+                                    "roman": "keikeu",
+                                    "meaning": "Cake",
+                                    "emoji": "🎂",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Ice cream",
+                                        "Chocolate",
+                                        "Bread"
+                                    ]
+                                },
+                                {
+                                    "target": "초콜릿",
+                                    "roman": "chokolit",
+                                    "meaning": "Chocolate",
+                                    "emoji": "🍫",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Candy",
+                                        "Snack",
+                                        "Jelly"
+                                    ]
+                                },
+                                {
+                                    "target": "피자",
+                                    "roman": "pija",
+                                    "meaning": "Pizza",
+                                    "emoji": "🍕",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Hamburger",
+                                        "Chicken",
+                                        "Pasta"
+                                    ]
+                                },
+                                {
+                                    "target": "햄버거",
+                                    "roman": "haembeogeo",
+                                    "meaning": "Hamburger",
+                                    "emoji": "🍔",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Pizza",
+                                        "Sandwich",
+                                        "Hot dog"
+                                    ]
+                                },
+                                {
+                                    "target": "아이스크림",
+                                    "roman": "aiseukrim",
+                                    "meaning": "Ice cream",
+                                    "emoji": "🍦",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Cake",
+                                        "Juice",
+                                        "Bingsu"
+                                    ]
+                                },
+                                {
+                                    "target": "바나나",
+                                    "roman": "banana",
+                                    "meaning": "Banana",
+                                    "emoji": "🍌",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Apple",
+                                        "Grape",
+                                        "Strawberry"
+                                    ]
+                                },
+                                {
+                                    "target": "콜라",
+                                    "roman": "kolla",
+                                    "meaning": "Cola",
+                                    "emoji": "🥤",
+                                    "image": "",
+                                    "example": "",
+                                    "example_translation": "",
+                                    "distractors": [
+                                        "Juice",
+                                        "Coffee",
+                                        "Water"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Sino-Korean",
+            "status": "active",
+            "levels": [
+                {
+                    "title": "Level 1: Starter",
+                    "status": "active",
+                    "sets": [
+                        {
+                            "id": "set_50101",
+                            "title": "Set 1. Directional & Positional Sino-Korean Words",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "동",
+                                    "roman": "dong",
+                                    "meaning": "East",
+                                    "emoji": "東",
+                                    "image": "",
+                                    "example": "동해 (Donghae), 동쪽 (Dongjjok)",
+                                    "example_translation": "East Sea, East side",
+                                    "distractors": [
+                                        "West",
+                                        "South",
+                                        "North"
+                                    ]
+                                },
+                                {
+                                    "target": "서",
+                                    "roman": "seo",
+                                    "meaning": "West",
+                                    "emoji": "西",
+                                    "image": "",
+                                    "example": "서해 (Seohae), 서쪽 (Seojjok)",
+                                    "example_translation": "West Sea, West side",
+                                    "distractors": [
+                                        "East",
+                                        "South",
+                                        "North"
+                                    ]
+                                },
+                                {
+                                    "target": "남",
+                                    "roman": "nam",
+                                    "meaning": "South",
+                                    "emoji": "南",
+                                    "image": "",
+                                    "example": "남해 (Namhae), 남쪽 (Namjjok)",
+                                    "example_translation": "South Sea, South side",
+                                    "distractors": [
+                                        "North",
+                                        "East",
+                                        "West"
+                                    ]
+                                },
+                                {
+                                    "target": "북",
+                                    "roman": "buk",
+                                    "meaning": "North",
+                                    "emoji": "北",
+                                    "image": "",
+                                    "example": "북극 (Bukgeuk), 북쪽 (Bukjjok)",
+                                    "example_translation": "North Pole, North side",
+                                    "distractors": [
+                                        "South",
+                                        "East",
+                                        "West"
+                                    ]
+                                },
+                                {
+                                    "target": "상",
+                                    "roman": "sang",
+                                    "meaning": "Up / Top",
+                                    "emoji": "上",
+                                    "image": "",
+                                    "example": "옥상 (Oksang), 상승 (Sangseung)",
+                                    "example_translation": "Rooftop, Rise / Increase",
+                                    "distractors": [
+                                        "Down",
+                                        "Left",
+                                        "Right"
+                                    ]
+                                },
+                                {
+                                    "target": "하",
+                                    "roman": "ha",
+                                    "meaning": "Down / Bottom",
+                                    "emoji": "下",
+                                    "image": "",
+                                    "example": "하강 (Hagang), 지하철 (Jihacheol)",
+                                    "example_translation": "Descent / Fall, Subway",
+                                    "distractors": [
+                                        "Up",
+                                        "Left",
+                                        "Right"
+                                    ]
+                                },
+                                {
+                                    "target": "좌",
+                                    "roman": "jwa",
+                                    "meaning": "Left",
+                                    "emoji": "左",
+                                    "image": "",
+                                    "example": "좌회전 (Jwhwajeon), 좌우 (Jwau)",
+                                    "example_translation": "Left turn, Left and right",
+                                    "distractors": [
+                                        "Right",
+                                        "Up",
+                                        "Down"
+                                    ]
+                                },
+                                {
+                                    "target": "우",
+                                    "roman": "u",
+                                    "meaning": "Right",
+                                    "emoji": "右",
+                                    "image": "",
+                                    "example": "우측 (Uchik), 우회전 (Uhuijeon)",
+                                    "example_translation": "Right side, Right turn",
+                                    "distractors": [
+                                        "Left",
+                                        "Up",
+                                        "Down"
+                                    ]
+                                },
+                                {
+                                    "target": "전",
+                                    "roman": "jeon",
+                                    "meaning": "Front / Before",
+                                    "emoji": "前",
+                                    "image": "",
+                                    "example": "전진 (Jeonjin), 전후 (Jeonhu)",
+                                    "example_translation": "Advance, Before and after",
+                                    "distractors": [
+                                        "Back",
+                                        "Left",
+                                        "Right"
+                                    ]
+                                },
+                                {
+                                    "target": "후",
+                                    "roman": "hu",
+                                    "meaning": "Back / After",
+                                    "emoji": "後",
+                                    "image": "",
+                                    "example": "후문 (Humun), 이후 (Ihu)",
+                                    "example_translation": "Back door, Afterwards",
+                                    "distractors": [
+                                        "Front",
+                                        "Left",
+                                        "Right"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Word Power - Easy Korean Vocabulary Learning</title>
+    <meta name="description" content="Master Korean vocabulary with interactive 5-word quizzes. Designed for English speakers, inspired by Word Power Made Easy.">
+    
+    <!-- 📌 여기에 붙여넣기 -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4G9JGNEQX2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4G9JGNEQX2');
+    </script>
+    
+    
+    <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- [섹션] 상단 고정 헤더 -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="logo">🇰🇷 Korean Word Power</h1>
+            <span class="tagline">Expand your vocabulary, easily.</span>
+        </div>
+    </header>
+
+    <!-- [섹션] 3단 그리드 본문 컨테이너 -->
+    <div class="app-container">
+        
+        <!-- [왼쪽 패널] 공지사항 및 학습 팁 영역 -->
+        <aside class="sidebar left-panel">
+            <div class="side-notice">
+                <p id="side-notice-text" class="side-notice-p"></p>
+            </div>
+
+            <!-- 학습 팁 영역 -->
+            <div class="study-tips-section">
+                <h3>Korean Study Tips</h3>
+                <div class="tips-scroll-box">
+                    <div id="tips-container" class="tips-container"></div>
+                </div>
+            </div>
+
+            <div class="feedback-box">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHVP0Vs10Rr3PAGqzKi7Lr6pW4dGh2nnb5BHVWY5OZ9--YGA/viewform?usp=publish-editor" target="_blank" class="feedback-link">💬 Take Feedback Survey</a>
+            </div>
+        </aside>
+
+        <!-- [중앙 메인 영역] 모바일 앱 프레임 컨테이너 -->
+        <main class="main-content">
+            <div class="center-notice">
+                <span id="center-notice-text"></span>
+            </div>
+
+            <!-- 자바스크립트가 실제로 구동되는 모바일 프레임 -->
+            <div class="mobile-frame">
+                <!-- 상단 XP 점수 표시 바 -->
+                <div class="mobile-top-bar">
+                    <span>🇰🇷 K-Word Learning</span>
+                    <span id="user-xp">XP: 0</span>
+                </div>
+
+                <!-- [View 1] Home View -->
+                <div id="view-home" class="view">
+                    <h2>Main Lobby</h2>
+                    <p class="lobby-desc">Select a category to start learning.</p>
+                    <div id="home-category-list"></div>
+                </div>
+
+                <!-- [View 2] Study View -->
+                <div id="view-study" class="view">
+                    <div class="study-nav-header">
+                        <button class="btn-home" onclick="goHome()">❮ Home</button>
+                        <span id="study-progress">1 / 5</span>
+                    </div>
+                    
+                    <!-- 단어 학습 카드 본체 -->
+                    <div class="card study-card">
+                        <div class="study-card-body">
+                            <!-- 이미지 영역 -->
+                            <div id="target-image-container" class="target-image-wrapper" style="display:none;">
+                                <img id="target-image" class="target-image-style" src="" alt="Word Illustration">
+                            </div>
+                            
+                            <!-- 이모지 영역 -->
+                            <div id="target-emoji-container" class="target-emoji-wrapper" style="display:none;">
+                                <span id="target-emoji"></span>
+                            </div>
+
+                            <!-- 단어 텍스트 정보 영역 -->
+                            <div class="target-text-area">
+                                <h1 id="target-text">-</h1>
+                                <p id="target-roman">-</p>
+                                <p id="target-meaning">-</p>
+                            </div>
+                            
+                            <!-- 예문 및 해석 영역 -->
+                            <div id="example-container" class="example-box">
+                                <p id="target-example">-</p>
+                                <p id="target-example-trans">-</p>
+                            </div>
+                            
+                            <!-- 기능 버튼 -->
+                            <div class="action-buttons-row">
+                                <button id="btn-tts" class="action-btn" onclick="playTTS()">🔊 Audio</button>
+                                <button class="action-btn" onclick="toggleHandwritingPad()">✍️ Practice</button>
+                            </div>
+                            
+                            <!-- 손글씨 연습 패드 -->
+                            <div id="handwriting-container" class="handwriting-wrapper" style="display:none;">
+                                <p class="handwriting-desc">✍️ Practice writing the Korean word below</p>
+                                <div class="canvas-flex-wrapper">
+                                    <div class="canvas-outer">
+                                        <canvas id="handwriting-canvas" width="400" height="200" class="handwriting-canvas-style"></canvas>
+                                    </div>
+                                </div>
+                                <div class="handwriting-actions">
+                                    <button class="sub-action-btn" onclick="clearCanvas()">🗑️ Clear Pad</button>
+                                    <button class="sub-action-btn" onclick="toggleHandwritingPad()">▲ Hide Pad</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 하단 이전/다음 이동 버튼 영역 -->
+                        <div class="study-card-footer">
+                            <button id="btn-prev-item" class="footer-btn btn-prev" onclick="prevItem()">Previous</button>
+                            <button id="btn-next-item" class="footer-btn btn-next" onclick="nextItem()">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- [View 3] Quiz View -->
+                <div id="view-quiz" class="view">
+                    <h3>Q. What does this mean?</h3>
+                    <div class="card quiz-card">
+                        <div id="quiz-image-container" class="quiz-image-wrapper" style="display:none;">
+                            <img id="quiz-image" class="quiz-img-style" src="" alt="Quiz Illustration">
+                        </div>
+                        <div id="quiz-emoji-container" class="quiz-emoji-wrapper" style="display:none;">
+                            <span id="quiz-emoji"></span>
+                        </div>
+                        <h1 id="quiz-target">-</h1>
+                    </div>
+                    <div id="quiz-options" class="quiz-options-wrapper"></div>
+                    <p id="quiz-hint" class="quiz-hint-text"></p>
+                </div>
+
+                <!-- [View 4] Result View -->
+                <div id="view-result" class="view">
+                    <h1 id="result-title">🎉 Set Completed!</h1>
+                    <p class="result-xp-text">Earned Points: <strong class="xp-highlight">+50 XP</strong></p>
+                    <div id="result-actions" class="result-actions-wrapper"></div>
+                </div>
+
+                <!-- Bottom Sheet Modal -->
+                <div id="overlay" onclick="closeSheet()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:99;"></div>
+                <div id="bottom-sheet" style="display:none; position:fixed; bottom:0; left:0; right:0; background:white; padding:20px; border-radius:16px 16px 0 0; max-height:80%; overflow-y:auto; z-index:100; box-shadow:0 -4px 10px rgba(0,0,0,0.1);">
+                    <div id="sheet-content"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- [오른쪽 패널] -->
+        <aside class="sidebar right-panel">
+            <div class="placeholder-box">
+                <span class="placeholder-text">Ad / Stats Slot</span>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- [섹션] 하단 푸터 (2단 구조: 광고 영역 + 정보 영역) -->
+    <footer class="app-footer">
+        <!-- 1단: 추후 광고 배너가 들어갈 영역 -->
+        <div class="footer-ad-slot">
+            <!-- 광고 영역 컨텐츠 (추후 구현) -->
+        </div>
+
+        <!-- 2단: 기존 저작권 및 서비스 정보 영역 -->
+        <div class="footer-info">
+            <p>© 2026 Korean Word Power. Open Beta Service. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- [모달] 팁 상세 내용 전체 모달 -->
+    <div id="tip-modal" class="tip-modal">
+        <div class="modal-content">
+            <span id="modal-close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-body" class="modal-body-p"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script> 
+</body>
+</html>

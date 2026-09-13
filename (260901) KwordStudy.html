@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Word Learning Engine</title>
+  <style>
+    /* 기본 뷰 숨김 처리 (초기 겹침 방지) */
+    .view {
+      display: none;
+    }
+    .view.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mobile-frame" style="max-width: 480px; margin: 0 auto; padding: 20px; font-family: sans-serif;">
+  <!-- Top Bar: 앱 상단 헤더 (XP 점수 표시) -->
+  <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">
+    <span>🇰🇷 K-Word Learning</span>
+    <span id="user-xp">XP: 0</span>
+  </div>
+
+  <!-- 1. Home View: 메인 카테고리 목록 뷰 -->
+  <div id="view-home" class="view">
+    <h2>Main Lobby</h2>
+    <p style="color:#666; margin-bottom:15px; font-size:0.9rem;">Select a category to start learning.</p>
+    <div id="home-category-list"></div>
+  </div>
+
+  <!-- 2. Study View: 단어 카드 학습 뷰 -->
+  <div id="view-study" class="view">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <button onclick="goHome()" style="width:auto; padding:6px 12px;">❮ Home</button>
+      <span id="study-progress">1 / 5</span>
+    </div>
+    
+    <div class="card" style="margin-top:15px; border:1px solid #ddd; padding:16px; text-align:center; border-radius:12px;">
+      <!-- 이미지 영역 (JSON에 image URL이 있을 때만 표시) -->
+      <div id="target-image-container" style="display:none; width:100%; height:160px; margin-bottom:12px;">
+        <img id="target-image" src="" alt="Word Illustration" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+      </div>
+      
+      <!-- 💡 이모지 영역 (이미지가 없을 때 이모지 표시) -->
+      <div id="target-emoji-container" style="display:none; font-size:4rem; margin-bottom:12px;">
+        <span id="target-emoji"></span>
+      </div>
+
+      <h1 id="target-text" style="font-size:2rem; margin-bottom:6px;">-</h1>
+      <p id="target-roman" style="color:#666;">-</p>
+      <p id="target-meaning" style="font-size:1.2rem; font-weight:bold; margin-top:8px;">-</p>
+      
+      <!-- 💡 예문 및 해석 영역 추가 -->
+      <div id="example-container" style="margin-top:12px; padding:10px; background:#f3f4f6; border-radius:8px; text-align:left; font-size:0.9rem;">
+        <p id="target-example" style="margin:0 0 4px 0; font-weight:bold; color:#1f2937;">-</p>
+        <p id="target-example-trans" style="margin:0; color:#4b5563; font-style:italic;">-</p>
+      </div>
+      
+      <!-- 기능 버튼: 음성 재생 및 손글씨 패드 -->
+      <div style="display:flex; gap:8px; margin-top:15px;">
+        <button id="btn-tts" onclick="playTTS()" style="flex:1; text-align:center; padding:10px;">🔊 Audio</button>
+        <button onclick="toggleHandwritingPad()" style="flex:1; text-align:center; padding:10px;">✍️ Practice</button>
+      </div>
+      
+      <!-- 손글씨 연습 패드 (기본 숨김) -->
+      <div id="handwriting-container" style="display:none; margin-top:15px; border-top:1px dashed #ccc; padding-top:15px; text-align:center;">
+        <p style="font-size:0.85rem; color:#666; margin-bottom:8px;">✍️ Practice writing the Korean word below</p>
+        
+        <div style="display:flex; justify-content:center; align-items:center; width:100%;">
+          <div style="position:relative; width:400px; height:200px;">
+            <canvas id="handwriting-canvas" width="400" height="200" style="border:1px solid #aaa; background:#fafafa; touch-action:none; display:block; border-radius:8px;"></canvas>
+          </div>
+        </div>
+
+        <button onclick="clearCanvas()" style="width:auto; padding:4px 12px; font-size:0.8rem; margin-top:8px; text-align:center;">🗑️ Clear Pad</button>
+      </div>
+    </div>
+
+    <!-- 카드 이동 버튼 -->
+    <div style="margin-top:20px; display:flex; gap:10px;">
+      <button id="btn-prev-item" style="flex:1; text-align:center; padding:10px;" onclick="prevItem()">Previous</button>
+      <button id="btn-next-item" style="flex:1; text-align:center; padding:10px;" onclick="nextItem()">Next</button>
+    </div>
+  </div>
+
+  <!-- 3. Quiz View: 퀴즈 풀이 뷰 -->
+  <div id="view-quiz" class="view">
+    <h3>Q. What does this mean?</h3>
+    <div class="card" style="border:1px solid #ddd; padding:16px; text-align:center; border-radius:12px;">
+      <!-- 퀴즈 뷰 내 시각 자료 영역 (이미지 또는 이모지) -->
+      <div id="quiz-image-container" style="display:none; width:100%; height:160px; margin-bottom:12px;">
+        <img id="quiz-image" src="" alt="Quiz Illustration" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+      </div>
+      <div id="quiz-emoji-container" style="display:none; font-size:4rem; margin-bottom:12px;">
+        <span id="quiz-emoji"></span>
+      </div>
+      <h1 id="quiz-target" style="font-size:2rem; color:#3b82f6;">-</h1>
+    </div>
+    <div id="quiz-options" style="margin-top:15px;"></div>
+    <p id="quiz-hint" style="color:#ef4444; text-align:center; margin-top:10px; font-size:0.9rem;"></p>
+  </div>
+
+  <!-- 4. Result View: 완료 화면 뷰 -->
+  <div id="view-result" class="view" style="text-align:center; padding-top:30px;">
+    <h1 id="result-title">🎉 Set Completed!</h1>
+    <p style="margin:15px 0; font-size:1.2rem;">Earned Points: <strong style="color:#3b82f6;">+50 XP</strong></p>
+    
+    <div id="result-actions" style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+      <!-- JavaScript 동적으로 버튼이 채워집니다 -->
+    </div>
+  </div>
+
+  <!-- Bottom Sheet Modal: 레벨/세트 선택 레이어 -->
+  <div id="overlay" onclick="closeSheet()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:99;"></div>
+  <div id="bottom-sheet" style="display:none; position:fixed; bottom:0; left:0; right:0; background:white; padding:20px; border-radius:16px 16px 0 0; max-height:80%; overflow-y:auto; z-index:100; box-shadow:0 -4px 10px rgba(0,0,0,0.1);">
+    <div id="sheet-content"></div>
+  </div>
+</div>
+
+<!-- 앱 엔진 동작 로직 (자바스크립트) -->
+<script>
+  let appData = { categories: [] };
+  let totalXP = parseInt(localStorage.getItem('user_xp') || '0');
+  let currentLevelData = null; 
+  let currentItems = [];
+  let currentItemIdx = 0;
+  let currentQuizIdx = 0;
+
+  let canvas, ctx;
+  let isDrawing = false;
+
+  let currentFullSetItems = []; // 세트 전체 단어
+  let currentChunkIdx = 0;      // 현재 5개씩 묶인 그룹 번호
+
+  let currentCatIdx = null; // 현재 카테고리 인덱스 기억
+  let currentLvlIdx = null; // 현재 레벨 인덱스 기억
+
+  document.getElementById('user-xp').innerText = `XP: ${totalXP}`;
+
+  window.onload = function() {
+    initCanvas();
+    
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) throw new Error('data.json 파일을 불러올 수 없습니다.');
+        return response.json();
+      })
+      .then(data => {
+        appData = data;
+        renderHomeMenu();
+        showView('view-home');
+      })
+      .catch(error => {
+        console.error('Error loading data.json:', error);
+      });
+  };
+
+  function initCanvas() {
+    canvas = document.getElementById('handwriting-canvas');
+    if (!canvas) return;
+    ctx = canvas.getContext('2d');
+
+    canvas.onmousedown = (e) => { isDrawing = true; draw(e); };
+    canvas.onmousemove = (e) => { if (isDrawing) draw(e); };
+    canvas.onmouseup = () => { isDrawing = false; ctx.beginPath(); };
+    canvas.onmouseleave = () => { isDrawing = false; ctx.beginPath(); };
+
+    canvas.ontouchstart = (e) => { e.preventDefault(); isDrawing = true; drawTouch(e); };
+    canvas.ontouchmove = (e) => { e.preventDefault(); if (isDrawing) drawTouch(e); };
+    canvas.ontouchend = () => { isDrawing = false; ctx.beginPath(); };
+
+    clearCanvas();
+  }
+
+  function getCanvasPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+
+  function draw(e) {
+    const pos = getCanvasPos(e);
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#1e3a8a';
+
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+  }
+
+  function drawTouch(e) {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      draw({ clientX: touch.clientX, clientY: touch.clientY });
+    }
+  }
+
+  function clearCanvas() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.strokeStyle = '#e5e7eb';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(200, 0); ctx.lineTo(200, 200);
+    ctx.moveTo(0, 100); ctx.lineTo(400, 100);
+    ctx.stroke();
+    ctx.beginPath();
+  }
+
+  function toggleHandwritingPad() {
+    const pad = document.getElementById('handwriting-container');
+    if (pad.style.display === 'none' || pad.style.display === '') {
+      pad.style.display = 'block';
+      clearCanvas();
+      
+      // 💡 패드가 열릴 때 하단 Next 버튼까지 한 화면에 보이도록 스크롤 제어
+      setTimeout(() => {
+        const nextButton = document.getElementById('btn-next-item');
+        if (nextButton) {
+          nextButton.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        } else {
+          pad.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+      }, 50);
+    } else {
+      pad.style.display = 'none';
+    }
+  }
+
+  function playTTS() {
+    const item = currentItems[currentItemIdx];
+    if (!item || !item.target) return;
+
+    const btn = document.getElementById('btn-tts');
+    window.speechSynthesis.cancel();
+
+    const uttr = new SpeechSynthesisUtterance(item.target);
+    uttr.lang = 'ko-KR';
+    uttr.rate = 0.9;
+
+    uttr.onstart = () => { if (btn) btn.innerText = "🔊 Playing..."; };
+    uttr.onend = () => { if (btn) btn.innerText = "🔊 Audio"; };
+    uttr.onerror = () => { if (btn) btn.innerText = "🔊 Audio"; };
+
+    window.speechSynthesis.speak(uttr);
+  }
+
+  function renderHomeMenu() {
+    const container = document.getElementById('home-category-list');
+    container.innerHTML = '';
+
+    if (!appData.categories) return;
+
+    appData.categories.forEach((cat, catIdx) => {
+      const btn = document.createElement('button');
+      btn.style.width = '100%';
+      btn.style.padding = '14px';
+      btn.style.margin = '8px 0';
+      btn.style.borderRadius = '8px';
+      btn.style.border = '1px solid #ccc';
+      btn.style.cursor = 'pointer';
+      btn.style.background = '#f9fafb';
+      btn.style.fontWeight = 'bold';
+
+      if (cat.status === 'active') {
+        btn.innerText = cat.title;
+        btn.onclick = () => openLevelSheet(catIdx);
+      } else {
+        btn.disabled = true;
+        btn.innerText = `${cat.title} (🔒 Coming Soon)`;
+      }
+      container.appendChild(btn);
+    });
+  }
+
+  function openLevelSheet(catIdx) {
+    const category = appData.categories[catIdx];
+    const content = document.getElementById('sheet-content');
+    let html = `<h3>${category.title}</h3><p style="color:#666; font-size:0.85rem; margin-bottom:10px;">Select a level to proceed.</p>`;
+
+    if (!category.levels || category.levels.length === 0) {
+      html += `<p style="padding:15px; color:#999; text-align:center;">No levels available yet.</p>`;
+    } else {
+      category.levels.forEach((lvl, lvlIdx) => {
+        if (lvl.status === 'active') {
+          html += `<button style="width:100%; padding:12px; margin:6px 0; border-radius:6px; border:1px solid #ddd; cursor:pointer;" onclick='openSetSheet(${catIdx}, ${lvlIdx})'>${lvl.title} ▶</button>`;
+        } else {
+          html += `<button style="width:100%; padding:12px; margin:6px 0; border-radius:6px; border:1px solid #ddd;" disabled>${lvl.title} (🔒 Locked)</button>`;
+        }
+      });
+    }
+
+    content.innerHTML = html;
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('bottom-sheet').style.display = 'block';
+  }
+
+  function openSetSheet(catIdx, lvlIdx) {
+    currentCatIdx = catIdx;
+    currentLvlIdx = lvlIdx;
+
+    const level = appData.categories[catIdx].levels[lvlIdx];
+    currentLevelData = level;
+    
+    const content = document.getElementById('sheet-content');
+    let html = `
+      <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+        <h4 style="margin:0;">${level.title}</h4>
+        <button onclick="closeSheet()" style="width:auto; padding:4px 8px; font-size:0.8rem;">Close</button>
+      </div>
+    `;
+
+    if (!level.sets || level.sets.length === 0) {
+      html += `<p style="padding:15px; color:#999; text-align:center;">No sets available yet.</p>`;
+    } else {
+      level.sets.forEach(set => {
+        if (set.status === 'active') {
+          html += `<button style="width:100%; padding:12px; margin:6px 0; border-radius:6px; border:1px solid #ddd; cursor:pointer;" onclick='startStudy(${JSON.stringify(set.items)})'>${set.title} (${set.items.length} items) ▶</button>`;
+        } else {
+          html += `<button style="width:100%; padding:12px; margin:6px 0; border-radius:6px; border:1px solid #ddd;" disabled>${set.title} (🔒 Locked)</button>`;
+        }
+      });
+    }
+
+    content.innerHTML = html;
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('bottom-sheet').style.display = 'block';
+  }
+
+  function closeSheet() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('bottom-sheet').style.display = 'none';
+  }
+
+  function startStudy(items) {
+    currentFullSetItems = items; 
+    currentChunkIdx = 0;         
+    loadChunk();
+  }
+
+  function loadChunk() {
+    const start = currentChunkIdx * 5;
+    const end = start + 5;
+    currentItems = currentFullSetItems.slice(start, end); 
+    currentItemIdx = 0;
+    renderStudyCard();
+    showView('view-study');
+  }
+
+  function renderStudyCard() {
+    const item = currentItems[currentItemIdx];
+
+    const imgContainer = document.getElementById('target-image-container');
+    const imgEl = document.getElementById('target-image');
+    const emojiContainer = document.getElementById('target-emoji-container');
+    const emojiEl = document.getElementById('target-emoji');
+
+    // 💡 이미지와 이모지 분기 처리 (이미지가 없거나 비어있으면 이모지 출력)
+    if (item.image && item.image.trim() !== "") {
+      imgEl.src = item.image;
+      imgContainer.style.display = 'block';
+      emojiContainer.style.display = 'none';
+    } else if (item.emoji && item.emoji.trim() !== "") {
+      emojiEl.innerText = item.emoji;
+      emojiContainer.style.display = 'block';
+      imgContainer.style.display = 'none';
+    } else {
+      imgContainer.style.display = 'none';
+      emojiContainer.style.display = 'none';
+    }
+
+    document.getElementById('target-text').innerText = item.target;
+    document.getElementById('target-roman').innerText = item.roman;
+    document.getElementById('target-meaning').innerText = item.meaning;
+    
+    // 💡 예문 및 영어 해석 데이터 바인딩
+    document.getElementById('target-example').innerText = item.example || "";
+    document.getElementById('target-example-trans').innerText = item.example_translation || "";
+
+    document.getElementById('study-progress').innerText = `${currentItemIdx + 1} / ${currentItems.length}`;
+
+    const prevBtn = document.getElementById('btn-prev-item');
+    const nextBtn = document.getElementById('btn-next-item');
+
+    prevBtn.style.visibility = currentItemIdx === 0 ? 'hidden' : 'visible';
+    nextBtn.innerText = currentItemIdx === currentItems.length - 1 ? "🎯 Start Quiz" : "Next";
+
+    document.getElementById('handwriting-container').style.display = 'none';
+    clearCanvas();
+  }
+
+  function nextItem() {
+    window.speechSynthesis.cancel();
+    if (currentItemIdx < currentItems.length - 1) {
+      currentItemIdx++;
+      renderStudyCard();
+    } else {
+      startQuiz();
+    }
+  }
+
+  function prevItem() {
+    window.speechSynthesis.cancel();
+    if (currentItemIdx > 0) {
+      currentItemIdx--;
+      renderStudyCard();
+    }
+  }
+
+  function startQuiz() {
+    currentQuizIdx = 0;
+    
+    // 💡 퀴즈 출제 단어 순서 자체를 무작위로 섞어줌
+    currentItems = [...currentItems].sort(() => Math.random() - 0.5);
+    
+    renderQuizQuestion();
+    showView('view-quiz');
+  }
+
+  function renderQuizQuestion() {
+    const item = currentItems[currentQuizIdx];
+
+    const imgContainer = document.getElementById('quiz-image-container');
+    const imgEl = document.getElementById('quiz-image');
+    const emojiContainer = document.getElementById('quiz-emoji-container');
+    const emojiEl = document.getElementById('quiz-emoji');
+
+    if (item.image && item.image.trim() !== "") {
+      imgEl.src = item.image;
+      imgContainer.style.display = 'block';
+      emojiContainer.style.display = 'none';
+    } else if (item.emoji && item.emoji.trim() !== "") {
+      emojiEl.innerText = item.emoji;
+      emojiContainer.style.display = 'block';
+      imgContainer.style.display = 'none';
+    } else {
+      imgContainer.style.display = 'none';
+      emojiContainer.style.display = 'none';
+    }
+
+    document.getElementById('quiz-target').innerText = item.target;
+    document.getElementById('quiz-hint').innerText = "";
+
+    // 💡 퀴즈 보기(정답+오답) 무작위 셔플
+    const options = [item.meaning, ...item.distractors].sort(() => Math.random() - 0.5);
+
+    const optionsContainer = document.getElementById('quiz-options');
+    optionsContainer.innerHTML = options.map(opt => `
+      <button style="width:100%; padding:12px; margin:6px 0; border-radius:6px; border:1px solid #ddd; cursor:pointer; text-align:center;" onclick="checkQuizAnswer('${opt.replace(/'/g, "\\'")}', this)">${opt}</button>
+    `).join('');
+  }
+
+  function checkQuizAnswer(selected, btn) {
+    const correct = currentItems[currentQuizIdx].meaning;
+    if (selected === correct) {
+      btn.style.background = '#dcfce7';
+      btn.style.color = '#15803d';
+      setTimeout(() => {
+        currentQuizIdx++;
+        if (currentQuizIdx < currentItems.length) {
+          renderQuizQuestion();
+        } else {
+          finishLesson();
+        }
+      }, 400);
+    } else {
+      btn.style.background = '#fee2e2';
+      btn.style.color = '#ef4444';
+      btn.disabled = true;
+      document.getElementById('quiz-hint').innerText = "Incorrect. Please try again!";
+    }
+  }
+
+  function finishLesson() {
+    totalXP += 50;
+    localStorage.setItem('user_xp', totalXP);
+    document.getElementById('user-xp').innerText = `XP: ${totalXP}`;
+    handleQuizComplete(); 
+  }
+
+  function handleQuizComplete() {
+    const nextStart = (currentChunkIdx + 1) * 5;
+    const titleEl = document.getElementById('result-title');
+    const actionsEl = document.getElementById('result-actions');
+
+    if (nextStart < currentFullSetItems.length) {
+      titleEl.innerText = "✨ Good job on this chunk!";
+      actionsEl.innerHTML = `
+        <button onclick="nextChunkStudy()" style="padding:14px; background:#3b82f6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">▶ Continue Next 5 Words</button>
+        <button onclick="openSetSelection()" style="padding:12px; background:#f3f4f6; border:1px solid #ddd; border-radius:8px; cursor:pointer; font-weight:bold;">🚀 Choose Another Set</button>
+        <button onclick="goHome()" style="padding:10px; background:transparent; border:none; color:#666; cursor:pointer;">🏠 Back to Main Lobby</button>
+      `;
+    } else {
+      titleEl.innerText = "🎉 Set Completed!";
+      actionsEl.innerHTML = `
+        <button onclick="openSetSelection()" style="padding:14px; background:#3b82f6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">🚀 Choose Another Set</button>
+        <button onclick="goHome()" style="padding:10px; background:transparent; border:none; color:#666; cursor:pointer;">🏠 Back to Main Lobby</button>
+      `;
+    }
+
+    showView('view-result');
+  }
+
+  function openSetSelection() {
+    showView('view-home');
+    if (currentCatIdx !== null && currentLvlIdx !== null) {
+      openSetSheet(currentCatIdx, currentLvlIdx);
+    }
+  }
+
+  function nextChunkStudy() {
+    currentChunkIdx++;
+    loadChunk();
+  }
+
+  function showView(viewId) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(viewId).classList.add('active');
+    closeSheet();
+  }
+
+  function goHome() { 
+    showView('view-home'); 
+  }
+</script>
+</body>
+</html>

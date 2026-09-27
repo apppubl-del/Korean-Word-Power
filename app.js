@@ -293,6 +293,15 @@ function openSetSheet(catIdx, lvlIdx) {
     if (!level.sets || level.sets.length === 0) {
       html += `<p style="padding:15px; color:#999; text-align:center;">No sets available yet.</p>`;
     } else {
+      // 💡 핵심 수정: 자바스크립트에서 ID나 타이틀의 숫자를 추출하여 1, 2, 3... 10순으로 완벽하게 정렬
+      level.sets.sort((a, b) => {
+        const numA = parseInt(String(a.id).replace(/[^0-9]/g, '')) || 0;
+        const numB = parseInt(String(b.id).replace(/[^0-9]/g, '')) || 0;
+        return numA - numB;
+      });
+      
+     
+      
       // 💡 setIdx를 함께 받아와서 인덱스로 세트를 지정합니다.
       level.sets.forEach((set, setIdx) => {
         if (set.status === 'active') {

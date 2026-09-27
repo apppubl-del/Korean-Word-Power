@@ -5208,6 +5208,326 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "title": "Level 2: Elementary",
+                    "status": "active",
+                    "sets": [
+                        {
+                            "id": "set_21001",
+                            "title": "Set 1. Basic Physical Actions",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "일어나다",
+                                    "roman": "ireonada",
+                                    "meaning": "Wake",
+                                    "emoji": "⏰",
+                                    "image": "",
+                                    "example": "아침에 일어나다",
+                                    "example_translation": "Wake up in the morning",
+                                    "distractors": [
+                                        "Get",
+                                        "Stand",
+                                        "Sleep"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "씻다",
+                                    "roman": "ssitda",
+                                    "meaning": "Wash",
+                                    "emoji": "🧼",
+                                    "image": "",
+                                    "example": "손을 씻다",
+                                    "example_translation": "Wash hands",
+                                    "distractors": [
+                                        "Clean",
+                                        "Bath",
+                                        "Brush"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "입다",
+                                    "roman": "ipda",
+                                    "meaning": "Wear",
+                                    "emoji": "👕",
+                                    "image": "",
+                                    "example": "옷을 입다",
+                                    "example_translation": "Wear clothes",
+                                    "distractors": [
+                                        "Put",
+                                        "Take",
+                                        "Dress"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "벗다",
+                                    "roman": "beotda",
+                                    "meaning": "Take off",
+                                    "emoji": "👤",
+                                    "image": "",
+                                    "example": "모자를 벗다",
+                                    "example_translation": "Take off a hat",
+                                    "distractors": [
+                                        "Wear",
+                                        "Drop",
+                                        "Pull"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "쉬다",
+                                    "roman": "swida",
+                                    "meaning": "Rest",
+                                    "emoji": "🛋️",
+                                    "image": "",
+                                    "example": "집에 쉬다",
+                                    "example_translation": "Rest at home",
+                                    "distractors": [
+                                        "Sleep",
+                                        "Stop",
+                                        "Play"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "숨쉬다",
+                                    "roman": "sumswida",
+                                    "meaning": "Breathe",
+                                    "emoji": "🫁",
+                                    "image": "",
+                                    "example": "코로 숨쉬다",
+                                    "example_translation": "Breathe through the nose",
+                                    "distractors": [
+                                        "Blow",
+                                        "Take",
+                                        "Feel"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "삼키다",
+                                    "roman": "samkida",
+                                    "meaning": "Swallow",
+                                    "emoji": "💧",
+                                    "image": "",
+                                    "example": "물을 삼키다",
+                                    "example_translation": "Swallow water",
+                                    "distractors": [
+                                        "Eat",
+                                        "Drink",
+                                        "Bite"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "씹다",
+                                    "roman": "sshipda",
+                                    "meaning": "Bite",
+                                    "emoji": "🦷",
+                                    "image": "",
+                                    "example": "빵을 씹다",
+                                    "example_translation": "Bite bread",
+                                    "distractors": [
+                                        "Eat",
+                                        "Chew",
+                                        "Taste"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "웃다",
+                                    "roman": "utda",
+                                    "meaning": "Smile",
+                                    "emoji": "😊",
+                                    "image": "",
+                                    "example": "소리 내어 웃다",
+                                    "example_translation": "Smile aloud",
+                                    "distractors": [
+                                        "Cry",
+                                        "Laugh",
+                                        "Frown"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "울다",
+                                    "roman": "ulda",
+                                    "meaning": "Cry",
+                                    "emoji": "😢",
+                                    "image": "",
+                                    "example": "슬프게 울다",
+                                    "example_translation": "Cry sadly",
+                                    "distractors": [
+                                        "Smile",
+                                        "Sad",
+                                        "Tear"
+                                    ],
+                                    "tier": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "set_21011",
+                            "title": "Set 2. Movement & Travel",
+                            "status": "active",
+                            "items": [
+                                {
+                                    "target": "걷다",
+                                    "roman": "geotda",
+                                    "meaning": "Walk",
+                                    "emoji": "🚶",
+                                    "image": "",
+                                    "example": "길을 걷다",
+                                    "example_translation": "Walk the road",
+                                    "distractors": [
+                                        "Run",
+                                        "Jump",
+                                        "Move"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "뛰다",
+                                    "roman": "ttwida",
+                                    "meaning": "Run",
+                                    "emoji": "🏃",
+                                    "image": "",
+                                    "example": "운동장을 뛰다",
+                                    "example_translation": "Run on the playground",
+                                    "distractors": [
+                                        "Walk",
+                                        "Fast",
+                                        "Jump"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "달리다",
+                                    "roman": "dallida",
+                                    "meaning": "Run / Dash",
+                                    "emoji": "🐎",
+                                    "image": "",
+                                    "example": "트랙을 달리다",
+                                    "example_translation": "Run the track",
+                                    "distractors": [
+                                        "Stop",
+                                        "Walk",
+                                        "Slow"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "돌다",
+                                    "roman": "dolda",
+                                    "meaning": "Turn / Spin",
+                                    "emoji": "🔄",
+                                    "image": "",
+                                    "example": "모퉁이를 돌다",
+                                    "example_translation": "Turn the corner",
+                                    "distractors": [
+                                        "Straight",
+                                        "Stop",
+                                        "Go"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "건너다",
+                                    "roman": "geonneoda",
+                                    "meaning": "Cross",
+                                    "emoji": "🌉",
+                                    "image": "",
+                                    "example": "다리를 건너다",
+                                    "example_translation": "Cross the bridge",
+                                    "distractors": [
+                                        "Pass",
+                                        "Walk",
+                                        "Bridge"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "오르다",
+                                    "roman": "oreuda",
+                                    "meaning": "Climb / Rise",
+                                    "emoji": "🧗",
+                                    "image": "",
+                                    "example": "산을 오르다",
+                                    "example_translation": "Climb a mountain",
+                                    "distractors": [
+                                        "Fall",
+                                        "Down",
+                                        "Walk"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "내려오다",
+                                    "roman": "naeryeooda",
+                                    "meaning": "Come down",
+                                    "emoji": "⬇️",
+                                    "image": "",
+                                    "example": "계단을 내려오다",
+                                    "example_translation": "Come down the stairs",
+                                    "distractors": [
+                                        "Go up",
+                                        "Climb",
+                                        "Fall"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "들어가다",
+                                    "roman": "deureogada",
+                                    "meaning": "Enter / Go in",
+                                    "emoji": "🚪",
+                                    "image": "",
+                                    "example": "방에 들어가다",
+                                    "example_translation": "Enter the room",
+                                    "distractors": [
+                                        "Exit",
+                                        "Out",
+                                        "Come"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "나오다",
+                                    "roman": "naoda",
+                                    "meaning": "Come out",
+                                    "emoji": "📤",
+                                    "image": "",
+                                    "example": "밖으로 나오다",
+                                    "example_translation": "Come out outside",
+                                    "distractors": [
+                                        "In",
+                                        "Enter",
+                                        "Go"
+                                    ],
+                                    "tier": 0
+                                },
+                                {
+                                    "target": "지나다",
+                                    "roman": "jinada",
+                                    "meaning": "Pass / Go by",
+                                    "emoji": "⏳",
+                                    "image": "",
+                                    "example": "역을 지나다",
+                                    "example_translation": "Pass the station",
+                                    "distractors": [
+                                        "Stop",
+                                        "Stay",
+                                        "Wait"
+                                    ],
+                                    "tier": 0
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },

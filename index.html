@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korean Word Power - Easy Korean Vocabulary Learning</title>
     <meta name="description" content="Master Korean vocabulary with interactive 5-word quizzes. Designed for English speakers, inspired by Word Power Made Easy.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#1e3a8a">
+    <link rel="canonical" href="https://korean-word-power.netlify.app/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a8a'/%3E%3Ctext x='32' y='46' font-size='38' text-anchor='middle' fill='white' font-family='sans-serif'%3E한%3C/text%3E%3C/svg%3E">
     
     <!-- 링크 공유 시 보이는 제목 -->
     <meta property="og:title" content="Korean Word Power - Boost Your Korean Vocabulary">
@@ -13,13 +17,40 @@
     <meta property="og:description" content="A fast, lightweight, and fun way to learn and test your Korean vocabulary. Try the quiz now!">
     
     <!-- 공유할 때 노출될 대표 썸네일 이미지 주소 (웹사이트 내 이미지 경로로 지정) -->
-    <meta property="og:image" content="https://korean-word-power.netlify.app/image/thumbnail.webp">
+    <meta property="og:image" content="https://korean-word-power.netlify.app/image/thumbnail.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
     <!-- 현재 웹사이트의 정식 주소 -->
-    <meta property="og:url" content="https://korean-word-power.netlify.app">
+    <meta property="og:url" content="https://korean-word-power.netlify.app/">
     
     <!-- 웹사이트 종류 -->
-    <meta property="og:type" content="website">    
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Korean Word Power">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image:alt" content="Korean Word Power - interactive Korean vocabulary quiz">
+
+    <!-- 트위터(X) 등 카드형 미리보기 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Korean Word Power - Boost Your Korean Vocabulary">
+    <meta name="twitter:description" content="A fast, lightweight, and fun way to learn and test your Korean vocabulary. Try the quiz now!">
+    <meta name="twitter:image" content="https://korean-word-power.netlify.app/image/thumbnail.jpg">
+
+    <!-- 검색엔진용 구조화 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Korean Word Power",
+      "url": "https://korean-word-power.netlify.app/",
+      "description": "Master Korean vocabulary with interactive 5-word quizzes. Designed for English speakers, inspired by Word Power Made Easy.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "en",
+      "teaches": "Korean vocabulary"
+    }
+    </script>
 
 
     <!-- 📌 여기에 붙여넣기 -->
@@ -36,13 +67,14 @@
     
     <!-- CSS 파일 연결 -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
     <!-- [섹션] 상단 고정 헤더 -->
     <header class="app-header">
         <div class="header-content">
-            <h1 class="logo">🇰🇷 Korean Word Power</h1>
+            <h1 class="logo"><span aria-hidden="true">🇰🇷</span> Korean Word Power</h1>
             <span class="tagline">Expand your vocabulary, easily.</span>
         </div>
     </header>
@@ -51,7 +83,7 @@
     <div class="app-container">
         
         <!-- [왼쪽 패널] 공지사항 및 학습 팁 영역 -->
-        <aside class="sidebar left-panel">
+        <aside class="sidebar left-panel" aria-label="Notices and study tips">
             <div class="side-notice">
                 <p id="side-notice-text" class="side-notice-p"></p>
             </div>
@@ -65,7 +97,7 @@
             </div>
 
             <div class="feedback-box">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHVP0Vs10Rr3PAGqzKi7Lr6pW4dGh2nnb5BHVWY5OZ9--YGA/viewform?usp=publish-editor" target="_blank" class="feedback-link">💬 Take Feedback Survey</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHVP0Vs10Rr3PAGqzKi7Lr6pW4dGh2nnb5BHVWY5OZ9--YGA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="feedback-link">💬 Take Feedback Survey<span class="sr-only"> (opens in a new tab)</span></a>
             </div>
         </aside>
 
@@ -75,11 +107,15 @@
                 <span id="center-notice-text"></span>
             </div>
 
+            <noscript>
+                <p class="noscript-msg">Korean Word Power needs JavaScript to run. Please enable JavaScript in your browser to start learning Korean vocabulary.</p>
+            </noscript>
+
             <!-- 자바스크립트가 실제로 구동되는 모바일 프레임 -->
             <div class="mobile-frame">
                 <!-- 상단 XP 점수 표시 바 -->
                 <div class="mobile-top-bar">
-                    <span>🇰🇷 K-Word Learning</span>
+                    <span><span aria-hidden="true">🇰🇷</span> K-Word Learning</span>
                     <span id="user-xp">XP: 0</span>
                 </div>
 
@@ -100,33 +136,33 @@
                     <!-- 단어 학습 카드 본체 -->
                     <div class="card study-card">
                         <div class="study-card-body">
-                            <!-- 이미지 영역 -->
+                            <!-- 이미지 영역 (src는 JS에서 지정) -->
                             <div id="target-image-container" class="target-image-wrapper" style="display:none;">
-                                <img id="target-image" class="target-image-style" src="" alt="Word Illustration">
+                                <img id="target-image" class="target-image-style" alt="Word Illustration">
                             </div>
                             
                             <!-- 이모지 영역 -->
                             <div id="target-emoji-container" class="target-emoji-wrapper" style="display:none;">
-                                <span id="target-emoji"></span>
+                                <span id="target-emoji" aria-hidden="true"></span>
                             </div>
 
                             <!-- 단어 텍스트 정보 영역 -->
-                            <div class="target-text-area">
-                                <h1 id="target-text">-</h1>
+                            <div class="target-text-area" aria-live="polite">
+                                <h2 id="target-text" lang="ko">-</h2>
                                 <p id="target-roman">-</p>
                                 <p id="target-meaning">-</p>
                             </div>
                             
                             <!-- 예문 및 해석 영역 -->
                             <div id="example-container" class="example-box">
-                                <p id="target-example">-</p>
+                                <p id="target-example" lang="ko">-</p>
                                 <p id="target-example-trans">-</p>
                             </div>
                             
                             <!-- 기능 버튼 -->
                             <div class="action-buttons-row">
                                 <button id="btn-tts" class="action-btn" onclick="playTTS()">🔊 Audio</button>
-                                <button class="action-btn" onclick="toggleHandwritingPad()">✍️ Practice</button>
+                                <button id="btn-practice" class="action-btn" onclick="toggleHandwritingPad()" aria-expanded="false" aria-controls="handwriting-container">✍️ Practice</button>
                             </div>
                             
                             <!-- 손글씨 연습 패드 -->
@@ -134,7 +170,7 @@
                                 <p class="handwriting-desc">✍️ Practice writing the Korean word below</p>
                                 <div class="canvas-flex-wrapper">
                                     <div class="canvas-outer">
-                                        <canvas id="handwriting-canvas" width="400" height="200" class="handwriting-canvas-style"></canvas>
+                                        <canvas id="handwriting-canvas" width="400" height="200" class="handwriting-canvas-style" role="img" aria-label="Handwriting practice pad. Draw with a mouse or finger; this is a visual exercise."></canvas>
                                     </div>
                                 </div>
                                 <div class="handwriting-actions">
@@ -155,29 +191,29 @@
                 <!-- [View 3] Quiz View -->
                 <div id="view-quiz" class="view">
                     <h3>Q. What does this mean?</h3>
-                    <div class="card quiz-card">
+                    <div class="card quiz-card" aria-live="polite">
                         <div id="quiz-image-container" class="quiz-image-wrapper" style="display:none;">
-                            <img id="quiz-image" class="quiz-img-style" src="" alt="Quiz Illustration">
+                            <img id="quiz-image" class="quiz-img-style" alt="Quiz Illustration">
                         </div>
                         <div id="quiz-emoji-container" class="quiz-emoji-wrapper" style="display:none;">
-                            <span id="quiz-emoji"></span>
+                            <span id="quiz-emoji" aria-hidden="true"></span>
                         </div>
-                        <h1 id="quiz-target">-</h1>
+                        <h2 id="quiz-target" lang="ko">-</h2>
                     </div>
                     <div id="quiz-options" class="quiz-options-wrapper"></div>
-                    <p id="quiz-hint" class="quiz-hint-text"></p>
+                    <p id="quiz-hint" class="quiz-hint-text" role="status" aria-live="polite"></p>
                 </div>
 
                 <!-- [View 4] Result View -->
                 <div id="view-result" class="view">
-                    <h1 id="result-title">🎉 Set Completed!</h1>
+                    <h2 id="result-title">🎉 Set Completed!</h2>
                     <p class="result-xp-text">Earned Points: <strong class="xp-highlight">+50 XP</strong></p>
                     <div id="result-actions" class="result-actions-wrapper"></div>
                 </div>
 
                 <!-- Bottom Sheet Modal -->
-                <div id="overlay" onclick="closeSheet()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:99;"></div>
-                <div id="bottom-sheet" style="display:none; position:fixed; bottom:0; left:0; right:0; background:white; padding:20px; border-radius:16px 16px 0 0; max-height:80%; overflow-y:auto; z-index:100; box-shadow:0 -4px 10px rgba(0,0,0,0.1);">
+                <div id="overlay" class="sheet-overlay" onclick="closeSheet()" aria-hidden="true"></div>
+                <div id="bottom-sheet" class="bottom-sheet" role="dialog" aria-modal="true" aria-label="Choose a level or set">
                     <div id="sheet-content"></div>
                 </div>
             </div>
@@ -206,9 +242,9 @@
     </footer>
 
     <!-- [모달] 팁 상세 내용 전체 모달 -->
-    <div id="tip-modal" class="tip-modal">
+    <div id="tip-modal" class="tip-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <span id="modal-close">&times;</span>
+            <button id="modal-close" type="button" aria-label="Close">&times;</button>
             <h2 id="modal-title"></h2>
             <p id="modal-body" class="modal-body-p"></p>
         </div>

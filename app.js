@@ -3,7 +3,42 @@
    ========================================== */
 
 let appData = null;
-let totalXP = parseInt(localStorage.getItem('user_xp') || '0');
+
+// localStorage가 막혀 있어도(시크릿 모드, 쿠키 차단 등) 앱이 멈추지 않도록 보호
+function loadXP() {
+    try {
+        return parseInt(localStorage.getItem('user_xp') || '0') || 0;
+    } catch (e) {
+        return 0;
+    }
+}
+let totalXP = loadXP();
+
+// speechSynthesis를 지원하지 않는 브라우저(일부 인앱 브라우저)에서도 화면 전환이 깨지지 않도록 보호
+function stopTTS() {
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+
+// '동작 줄이기' 설정을 켠 사용자에게는 부드러운 스크롤을 쓰지 않음
+function scrollBehavior() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+}
+
+// 손글씨 패드 열림 상태를 버튼의 aria-expanded에 반영
+function setPadExpanded(expanded) {
+    const btn = document.getElementById('btn-practice');
+    if (btn) btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+}
+
+// 편향 없는 셔플 (Fisher-Yates)
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
 let currentLevelData = null; 
 let currentItems = [];
 let currentItemIdx = 0;
@@ -45,6 +80,9 @@ window.onload = function() {
     })
     .catch(error => {
         console.error('데이터 로딩 중 에러 발생:', error);
+        const list = document.getElementById('home-category-list');
+        if (list) list.innerText = 'Failed to load data. Please refresh the page.';
+        showView('view-home');
     });
 };
 
@@ -52,7 +90,7 @@ window.onload = function() {
 function scrollToBottomIfNeeded() {
     const studyCard = document.querySelector('#view-study .study-card');
     if (studyCard) {
-        studyCard.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        studyCard.scrollIntoView({ behavior: scrollBehavior(), block: 'end' });
     }
 }
 
@@ -78,7 +116,13 @@ function initCanvas() {
 
 function getCanvasPos(e) {
     const rect = canvas.getBoundingClientRect();
-    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    // 화면에 표시되는 크기와 canvas 내부 해상도(400x200)가 다를 때를 대비해 좌표를 보정
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY
+    };
 }
 
 function draw(e) {
@@ -98,25 +142,6 @@ function drawTouch(e) {
       const touch = e.touches[0];
       draw({ clientX: touch.clientX, clientY: touch.clientY });
     }
-}
-
-// 📌 손글씨 패드에 희미한 가이드 텍스트(타겟 단어)를 그려주는 함수
-function drawHandwritingGuide(wordText) {
-    const canvas = document.getElementById('handwriting-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    // 1. 기존에 그려진 내용 초기화
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // 2. 희미한 가이드 텍스트 스타일 설정
-    ctx.font = 'bold 70px sans-serif';
-    ctx.fillStyle = '#e5e7eb'; // 아주 연한 회색 (배경처럼 보이도록)
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    
-    // 3. 캔버스 중앙에 타겟 단어 출력
-    ctx.fillText(wordText, canvas.width / 2, canvas.height / 2);
 }
 
 function clearCanvas() {
@@ -170,18 +195,20 @@ function toggleHandwritingPad() {
 
     if (pad.style.display === 'none' || pad.style.display === '') {
       pad.style.display = 'block';
+      setPadExpanded(true);
       clearCanvas();
       
       setTimeout(() => {
         const nextButton = document.getElementById('btn-next-item');
         if (nextButton) {
-          nextButton.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          nextButton.scrollIntoView({ behavior: scrollBehavior(), block: 'end' });
         } else {
-          pad.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          pad.scrollIntoView({ behavior: scrollBehavior(), block: 'end' });
         }
       }, 50);
     } else {
       pad.style.display = 'none';
+      setPadExpanded(false);
     }
 }
 
@@ -192,8 +219,10 @@ function playTTS() {
     const item = currentItems[currentItemIdx];
     if (!item || !item.target) return;
 
+    if (!('speechSynthesis' in window)) return;
+
     const btn = document.getElementById('btn-tts');
-    window.speechSynthesis.cancel();
+    stopTTS();
 
     const uttr = new SpeechSynthesisUtterance(item.target);
     uttr.lang = 'ko-KR';
@@ -259,7 +288,7 @@ function openLevelSheet(catIdx) {
     let html = `<h3>${category.title}</h3><p style="color:#666; font-size:0.85rem; margin-bottom:10px;">Select a level to proceed.</p>`;
 
     if (!category.levels || category.levels.length === 0) {
-      html += `<p style="padding:15px; color:#999; text-align:center;">No levels available yet.</p>`;
+      html += `<p style="padding:15px; color:#6b7280; text-align:center;">No levels available yet.</p>`;
     } else {
       category.levels.forEach((lvl, lvlIdx) => {
         if (lvl.status === 'active') {
@@ -271,8 +300,7 @@ function openLevelSheet(catIdx) {
     }
 
     content.innerHTML = html;
-    document.getElementById('overlay').style.display = 'block';
-    document.getElementById('bottom-sheet').style.display = 'block';
+    showSheet();
 }
 
 function openSetSheet(catIdx, lvlIdx) {
@@ -291,7 +319,7 @@ function openSetSheet(catIdx, lvlIdx) {
     `;
 
     if (!level.sets || level.sets.length === 0) {
-      html += `<p style="padding:15px; color:#999; text-align:center;">No sets available yet.</p>`;
+      html += `<p style="padding:15px; color:#6b7280; text-align:center;">No sets available yet.</p>`;
     } else {
       // 💡 핵심 수정: 자바스크립트에서 ID나 타이틀의 숫자를 추출하여 1, 2, 3... 10순으로 완벽하게 정렬
       level.sets.sort((a, b) => {
@@ -313,15 +341,38 @@ function openSetSheet(catIdx, lvlIdx) {
     }
 
     content.innerHTML = html;
-    document.getElementById('overlay').style.display = 'block';
-    document.getElementById('bottom-sheet').style.display = 'block';
+    showSheet();
 }
 
-function closeSheet() {
+let sheetOpener = null; // 시트를 열기 직전에 포커스가 있던 요소 (닫을 때 복귀용)
+
+function showSheet() {
     const overlay = document.getElementById('overlay');
     const sheet = document.getElementById('bottom-sheet');
+    if (!overlay || !sheet) return;
+
+    const wasOpen = sheet.style.display === 'block';
+    if (!wasOpen) sheetOpener = document.activeElement;
+
+    overlay.style.display = 'block';
+    sheet.style.display = 'block';
+
+    const first = sheet.querySelector('button:not([disabled])');
+    if (first) first.focus({ preventScroll: true });
+}
+
+function closeSheet(restoreFocus = true) {
+    const overlay = document.getElementById('overlay');
+    const sheet = document.getElementById('bottom-sheet');
+    const wasOpen = sheet && sheet.style.display === 'block';
+
     if (overlay) overlay.style.display = 'none';
     if (sheet) sheet.style.display = 'none';
+
+    if (wasOpen && restoreFocus && sheetOpener && document.contains(sheetOpener)) {
+      sheetOpener.focus({ preventScroll: true });
+    }
+    sheetOpener = null;
 }
 
 // 💡 객체 대신 카테고리, 레벨, 세트의 인덱스 번호를 받아 데이터(items)를 꺼내옵니다.
@@ -354,11 +405,12 @@ function renderStudyCard() {
 
     if (item.image && item.image.trim() !== "") {
       imgEl.src = item.image;
-      imgContainer.style.display = 'block';
+      imgEl.alt = item.meaning || 'Word illustration';
+      imgContainer.style.display = 'flex';
       emojiContainer.style.display = 'none';
     } else if (item.emoji && item.emoji.trim() !== "") {
       emojiEl.innerText = item.emoji;
-      emojiContainer.style.display = 'block';
+      emojiContainer.style.display = 'flex';
       imgContainer.style.display = 'none';
     } else {
       imgContainer.style.display = 'none';
@@ -382,11 +434,12 @@ function renderStudyCard() {
 
     const handwritingContainer = document.getElementById('handwriting-container');
     if (handwritingContainer) handwritingContainer.style.display = 'none';
+    setPadExpanded(false);
     clearCanvas();
 }
 
 function nextItem() {
-    window.speechSynthesis.cancel();
+    stopTTS();
     if (currentItemIdx < currentItems.length - 1) {
       currentItemIdx++;
       renderStudyCard();
@@ -397,7 +450,7 @@ function nextItem() {
 }
 
 function prevItem() {
-    window.speechSynthesis.cancel();
+    stopTTS();
     if (currentItemIdx > 0) {
       currentItemIdx--;
       renderStudyCard();
@@ -410,7 +463,7 @@ function prevItem() {
    ========================================== */
 function startQuiz() {
     currentQuizIdx = 0;
-    currentItems = [...currentItems].sort(() => Math.random() - 0.5);
+    currentItems = shuffle(currentItems);
     renderQuizQuestion();
     showView('view-quiz');
 }
@@ -426,11 +479,11 @@ function renderQuizQuestion() {
 
     if (item.image && item.image.trim() !== "") {
       imgEl.src = item.image;
-      imgContainer.style.display = 'block';
+      imgContainer.style.display = 'flex';
       emojiContainer.style.display = 'none';
     } else if (item.emoji && item.emoji.trim() !== "") {
       emojiEl.innerText = item.emoji;
-      emojiContainer.style.display = 'block';
+      emojiContainer.style.display = 'flex';
       imgContainer.style.display = 'none';
     } else {
       imgContainer.style.display = 'none';
@@ -438,21 +491,35 @@ function renderQuizQuestion() {
     }
 
     document.getElementById('quiz-target').innerText = item.target;
-    document.getElementById('quiz-hint').innerText = "";
+    const quizHint = document.getElementById('quiz-hint');
+    quizHint.innerText = "";
+    quizHint.classList.remove('correct', 'wrong');
 
-    const options = [item.meaning, ...item.distractors].sort(() => Math.random() - 0.5);
+    const options = shuffle([item.meaning, ...(item.distractors || [])]);
 
     const optionsContainer = document.getElementById('quiz-options');
-    optionsContainer.innerHTML = options.map(opt => `
-      <button style="width:100%; padding:12px; margin:6px 0; border-radius:6px; border:1px solid #ddd; cursor:pointer; text-align:center;" onclick="checkQuizAnswer('${opt.replace(/'/g, "\\'")}', this)">${opt}</button>
-    `).join('');
+    optionsContainer.innerHTML = '';
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.style.cssText = 'width:100%; padding:12px; margin:6px 0; border-radius:6px; border:1px solid #ddd; cursor:pointer; text-align:center;';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => checkQuizAnswer(opt, btn));
+      optionsContainer.appendChild(btn);
+    });
 }
 
 function checkQuizAnswer(selected, btn) {
+    if (btn.disabled) return;
     const correct = currentItems[currentQuizIdx].meaning;
     if (selected === correct) {
       btn.style.background = '#dcfce7';
       btn.style.color = '#15803d';
+      const hintEl = document.getElementById('quiz-hint');
+      hintEl.innerText = 'Correct!';
+      hintEl.classList.remove('wrong');
+      hintEl.classList.add('correct');   // 정답 메시지는 파란색으로 표시
+      // 정답 처리 중 다른 버튼을 연속으로 눌러 문제가 두 번 넘어가는 것을 방지
+      document.querySelectorAll('#quiz-options button').forEach(b => { b.disabled = true; });
       setTimeout(() => {
         currentQuizIdx++;
         if (currentQuizIdx < currentItems.length) {
@@ -463,15 +530,22 @@ function checkQuizAnswer(selected, btn) {
       }, 400);
     } else {
       btn.style.background = '#fee2e2';
-      btn.style.color = '#ef4444';
+      btn.style.color = '#b91c1c';
       btn.disabled = true;
-      document.getElementById('quiz-hint').innerText = "Incorrect. Please try again!";
+      const wrongHint = document.getElementById('quiz-hint');
+      wrongHint.classList.remove('correct');
+      wrongHint.classList.add('wrong');   // 오답 메시지는 빨간색으로 표시
+      wrongHint.innerText = "Incorrect. Please try again!";
     }
 }
 
 function finishLesson() {
     totalXP += 50;
-    localStorage.setItem('user_xp', totalXP);
+    try {
+      localStorage.setItem('user_xp', totalXP);
+    } catch (e) {
+      console.warn('XP를 저장할 수 없습니다:', e);
+    }
     const xpEl = document.getElementById('user-xp');
     if (xpEl) xpEl.innerText = `XP: ${totalXP}`;
     handleQuizComplete(); 
@@ -485,14 +559,14 @@ function handleQuizComplete() {
     if (nextStart < currentFullSetItems.length) {
       titleEl.innerText = "✨ Good job on this chunk!";
       actionsEl.innerHTML = `
-        <button onclick="nextChunkStudy()" style="padding:14px; background:#3b82f6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">▶ Continue Next 5 Words</button>
+        <button onclick="nextChunkStudy()" style="padding:14px; background:#2563eb; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">▶ Continue Next 5 Words</button>
         <button onclick="openSetSelection()" style="padding:12px; background:#f3f4f6; border:1px solid #ddd; border-radius:8px; cursor:pointer; font-weight:bold;">🚀 Choose Another Set</button>
         <button onclick="goHome()" style="padding:10px; background:transparent; border:none; color:#666; cursor:pointer;">🏠 Back to Main Lobby</button>
       `;
     } else {
       titleEl.innerText = "🎉 Set Completed!";
       actionsEl.innerHTML = `
-        <button onclick="openSetSelection()" style="padding:14px; background:#3b82f6; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">🚀 Choose Another Set</button>
+        <button onclick="openSetSelection()" style="padding:14px; background:#2563eb; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">🚀 Choose Another Set</button>
         <button onclick="goHome()" style="padding:10px; background:transparent; border:none; color:#666; cursor:pointer;">🏠 Back to Main Lobby</button>
       `;
     }
@@ -512,12 +586,24 @@ function nextChunkStudy() {
     loadChunk();
 }
 
+let initialViewShown = false;
+
 function showView(viewId) {
-    window.speechSynthesis.cancel();
+    stopTTS();
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     const targetView = document.getElementById(viewId);
     if (targetView) targetView.classList.add('active');
-    closeSheet();
+    closeSheet(false);
+
+    // 첫 화면 이후의 화면 전환에서는 새 화면의 제목으로 포커스를 옮겨 화면 변화를 알림
+    if (targetView && initialViewShown) {
+      const heading = targetView.querySelector('h1, h2, h3');
+      if (heading) {
+        heading.setAttribute('tabindex', '-1');
+        heading.focus({ preventScroll: true });
+      }
+    }
+    initialViewShown = true;
 }
 
 function goHome() { 
@@ -526,41 +612,63 @@ function goHome() {
 
 
 // 사이드바 학습 팁 로드 및 모달 연동 로직
-console.log("1. 스크립트 파일 자체는 읽히고 있습니다.");
+let tipModalTrigger = null; // 모달을 열기 직전에 포커스가 있던 요소 (닫을 때 복귀용)
+
+function openTipModal(tip, trigger) {
+  const modal = document.getElementById("tip-modal");
+  if (!modal) return;
+
+  document.getElementById("modal-title").textContent = tip.title;
+  document.getElementById("modal-body").textContent = tip.content;
+  tipModalTrigger = trigger || null;
+  modal.classList.add('open');
+
+  const closeBtn = document.getElementById("modal-close");
+  if (closeBtn) closeBtn.focus();
+}
+
+function closeTipModal() {
+  const modal = document.getElementById("tip-modal");
+  if (!modal || !modal.classList.contains('open')) return;
+
+  modal.classList.remove('open');
+  if (tipModalTrigger && document.contains(tipModalTrigger)) tipModalTrigger.focus();
+  tipModalTrigger = null;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("2. DOMContentLoaded 이벤트 실행됨!");
-
   const tipsContainer = document.getElementById("tips-container");
   const modal = document.getElementById("tip-modal");
-  const modalTitle = document.getElementById("modal-title");
-  const modalBody = document.getElementById("modal-body");
   const modalClose = document.getElementById("modal-close");
 
-  console.log("3. tips-container 요소 상태:", tipsContainer);
-
   if (tipsContainer) {
-    console.log("4. tips-container가 존재하므로 fetch를 시작합니다.");
-    
     fetch("tips.json")
-      .then(response => {
-        console.log("5. tips.json 응답 도착:", response);
-        return response.json();
-      })
+      .then(response => response.json())
       .then(tips => {
-        console.log("6. 파싱된 팁 데이터:", tips);
-        
-        tips.forEach((tip, index) => {
-          console.log(`7. ${index}번째 팁 생성 중:`, tip.title);
-          
+        tips.forEach(tip => {
           const tipCard = document.createElement("div");
           tipCard.className = "tip-card";
-          tipCard.innerHTML = `<h4 title="${tip.title}">${tip.title}</h4>`;
+          // 키보드와 스크린리더에서도 버튼처럼 동작하도록 설정
+          tipCard.setAttribute("role", "button");
+          tipCard.setAttribute("aria-haspopup", "dialog");
+          tipCard.tabIndex = 0;
 
-          tipCard.addEventListener("click", () => {
-            modalTitle.textContent = tip.title;
-            modalBody.textContent = tip.content;
-            modal.classList.add('open');
+          const tipTitle = document.createElement("h4");
+          tipTitle.title = tip.title;
+          tipTitle.textContent = tip.title;
+          tipCard.appendChild(tipTitle);
+
+          tipCard.addEventListener("click", () => openTipModal(tip, tipCard));
+          tipCard.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              openTipModal(tip, tipCard);
+            } else if (e.key === " ") {
+              e.preventDefault(); // 스페이스는 키를 뗄 때 열어 닫기 버튼으로 이어지는 중복 클릭 방지
+            }
+          });
+          tipCard.addEventListener("keyup", (e) => {
+            if (e.key === " ") openTipModal(tip, tipCard);
           });
 
           tipsContainer.appendChild(tipCard);
@@ -572,14 +680,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (modalClose) {
-    modalClose.addEventListener("click", () => {
-      modal.classList.remove('open');
-    });
+    modalClose.addEventListener("click", closeTipModal);
   }
 
   window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.classList.remove('open');
-    }
+    if (event.target === modal) closeTipModal();
   });
+});
+
+/* ==========================================
+   Keyboard: Esc로 닫기 + 열린 대화상자 안에서 Tab 포커스 순환
+   ========================================== */
+function getFocusable(container) {
+  return [...container.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')]
+    .filter(el => el.getClientRects().length > 0);
+}
+
+document.addEventListener("keydown", (e) => {
+  const modal = document.getElementById("tip-modal");
+  const sheet = document.getElementById("bottom-sheet");
+  const modalOpen = modal && modal.classList.contains('open');
+  const sheetOpen = sheet && sheet.style.display === 'block';
+  if (!modalOpen && !sheetOpen) return;
+
+  if (e.key === "Escape") {
+    if (modalOpen) closeTipModal();
+    else closeSheet();
+    return;
+  }
+
+  if (e.key !== "Tab") return;
+
+  const dialog = modalOpen ? modal.querySelector('.modal-content') : sheet;
+  const focusable = getFocusable(dialog);
+  if (focusable.length === 0) {
+    e.preventDefault();
+    return;
+  }
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (!dialog.contains(document.activeElement)) {
+    e.preventDefault();
+    first.focus();
+  } else if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
 });

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://korean-word-power.netlify.app/sitemap.xml
